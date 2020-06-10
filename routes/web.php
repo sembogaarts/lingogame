@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['token'])->group(function () {
 
-    Route::get('/', function () {
-        return view('index');
-    });
+    // Home for user
+    Route::get('/', 'HomeController@index');
+
+    // Highscore
+    Route::get('/highscore', 'HighscoreController@index');
 
 });
 
