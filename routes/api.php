@@ -13,3 +13,13 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::middleware(['token'])->group(function () {
+
+    // Home for user
+    Route::get('/', 'HomeController@index');
+
+    // Highscore
+    Route::get('/highscore', 'HighscoreController@index');
+
+});

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAttemptTable extends Migration
+class CreateRoundsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateAttemptTable extends Migration
      */
     public function up()
     {
-        Schema::create('attempt', function (Blueprint $table) {
+        Schema::create('rounds', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('game_id');
+            $table->integer('game_id')->unsigned();
             $table->string('word');
             $table->timestamps();
+            // Relations
+            $table->foreign('game_id')->references('id')->on('games');
         });
     }
 
@@ -28,6 +30,6 @@ class CreateAttemptTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attempt');
+        Schema::dropIfExists('rounds');
     }
 }

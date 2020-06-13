@@ -18,6 +18,10 @@ Route::middleware(['token'])->group(function () {
     // Home for user
     Route::get('/', 'HomeController@index');
 
+    // Home for user
+    Route::get('/game', 'GameController@index')->name('game');
+    Route::post('/game', 'GameController@create')->name('createGame');
+
     // Highscore
     Route::get('/highscore', 'HighscoreController@index');
 
