@@ -19,8 +19,8 @@
                 <div class="col-md-6">
                     <form action="{{ route('saveUsername') }}" method="POST">
                         @csrf
-                        <input name="username" required type="text">
-                        <button type="submit">Opslaan</button>
+                        <input name="username" dusk="username" required type="text">
+                        <button type="submit" dusk="save">Opslaan</button>
                     </form>
                 </div>
             </div>
