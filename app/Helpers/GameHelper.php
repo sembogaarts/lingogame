@@ -50,7 +50,8 @@ class GameHelper
     }
 
     public function currentRound() {
-        return last($this->_rounds)[0];
+        $lastIndex = array_key_last($this->_rounds->toArray());
+        return last($this->_rounds)[$lastIndex];
     }
 
     public function attemptsForCurrentRound() {
