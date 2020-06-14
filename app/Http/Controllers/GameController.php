@@ -67,16 +67,10 @@ class GameController extends Controller
         $userHelper = new UserHelper(Auth::user());
         $gameHelper = new GameHelper($userHelper->getLatestGame());
 
-        if($gameHelper->currentRound()->success) {
+        if($gameHelper->currentRound()->finished_at) {
             return redirect()
                 ->route('playGame')
-                ->with('message', 'Je hebt al gewonnen, start een nieuwe ronde.');
-        }
-
-        if(count($gameHelper->attemptsForCurrentRound()) === 5) {
-            return redirect()
-                ->route('playGame')
-                ->with('message', 'Je hebt al 5 keer geraden, start een nieuwe ronde.');
+                ->with('message', 'Ronde is afgelopen, start een nieuwe ronde.');
         }
 
         $attempt = $gameHelper->makeAttempt($request->word);
@@ -84,8 +78,9 @@ class GameController extends Controller
         if($gameHelper->checkAttempt($attempt)) {
             $gameHelper->finishRound(true);
         } else {
-            if(count($gameHelper->attemptsForCurrentRound()) === 5) {
+            if(count($gameHelper->attemptsForCurrentRound()) >= 5) {
                 $gameHelper->finishRound(false);
+                $gameHelper->stop();
             }
         }
 

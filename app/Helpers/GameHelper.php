@@ -83,6 +83,22 @@ class GameHelper
         return $this->currentRound()->word === $attempt->word;
     }
 
+    public function stop() {
+        $this->_game->finished_at = Carbon::now();
+        $this->_game->score = $this->calculateScore();
+        $this->_game->save();
+    }
+
+    public function calculateScore() {
+        $points = 0;
+        foreach($this->_rounds as $round) {
+            if($round->success) {
+                $points++;
+            }
+        }
+        return $points;
+    }
+
     public function finishRound(bool $success) {
         $round = $this->currentRound();
         $round->success = $success;
