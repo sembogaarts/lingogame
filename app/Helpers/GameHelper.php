@@ -123,6 +123,7 @@ class GameHelper
     }
 
     /**
+     * Stops the current game
      * @return $this
      */
     public function stop() {
