@@ -12,7 +12,7 @@ before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - cp .env.testing .env
-  - php artisan dusk:chrome-driver 74
+  - php artisan dusk:chrome-driver 73
   - php artisan serve &
 
 script:
