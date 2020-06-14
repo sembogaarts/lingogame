@@ -27,20 +27,37 @@ class GameHelper
         $this->_rounds = Round::where('game_id', $this->_game->id)->get();
     }
 
-    public static function create($user)
+    public function getWordLength() {
+        return $this->_game->word_length;
+    }
+
+    public function getFirstLetterOfWord() {
+        return $this->currentRound()->word[0];
+    }
+
+    public static function create($user, $wordLength)
     {
 
         $game = Game::create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'word_length' => $wordLength
         ]);
 
         return new GameHelper($game);
 
     }
 
-    public function newRound($letters)
+    public function currentRound() {
+        return last($this->_rounds)[0];
+    }
+
+    public function attemptsForCurrentRound() {
+        return $this->currentRound()->attempts;
+    }
+
+    public function newRound()
     {
-        $word = WordHelper::randomWord($letters);
+        $word = WordHelper::randomWord($this->_game->word_length);
 
         $round[] = Round::create([
             'game_id' => $this->_game->id,
@@ -48,6 +65,14 @@ class GameHelper
         ]);
 
         return $this;
+
+    }
+
+    public function roundFeedback() {
+
+    }
+
+    public function render() {
 
     }
 

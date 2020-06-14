@@ -11,7 +11,13 @@
 </head>
 <body>
 
-@yield('body')
+<!-- VUE Wrapper -->
+<div id="app">
+    @yield('body')
+</div>
+
+<!-- JS -->
+<script src="/js/app.js"></script>
 
 </body>
 </html>

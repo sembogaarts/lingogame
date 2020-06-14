@@ -18,8 +18,12 @@ Route::middleware(['token'])->group(function () {
     // Home for user
     Route::get('/', 'HomeController@index');
 
-    // Home for user
-    Route::get('/game', 'GameController@index')->name('game');
+    // New game screen
+    Route::get('/new-game', 'GameController@newGame')->name('newGame');
+
+    // Play game
+    Route::get('/play', 'GameController@playGame')->name('playGame');
+
     Route::post('/game', 'GameController@create')->name('createGame');
 
     // Highscore

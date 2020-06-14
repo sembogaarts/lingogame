@@ -12,7 +12,7 @@ class WordHelper
 
     public static function randomWord($letters)
     {
-        return Word::where('letters', $letters)
+        return Word::where('length', $letters)
             ->inRandomOrder()
             ->first();
     }

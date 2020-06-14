@@ -25,7 +25,7 @@ class NewGameRequest extends FormRequest
     public function rules()
     {
         return [
-            'letters' => [
+            'word_length' => [
                 'required',
                 Rule::in([5, 6, 7])
             ]

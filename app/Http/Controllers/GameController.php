@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Game;
+use App\Helpers\BoardHelper;
 use App\Helpers\GameHelper;
 use App\Helpers\UserHelper;
 use App\Http\Requests\NewGameRequest;
@@ -13,17 +14,45 @@ use Illuminate\Support\Facades\Auth;
 class GameController extends Controller
 {
 
-    public function index(Request $request)
+    public function newGame(Request $request)
     {
-
         $user = Auth::user();
         $userHelper = new UserHelper($user);
 
-        if($userHelper->isPlaying()) {
-            return view('play');
-        } else {
-            return view('game');
+        if ($userHelper->isPlaying()) {
+            return redirect()->route('playGame');
         }
+
+        return view('new-game');
+
+    }
+
+    public function playGame()
+    {
+        $user = Auth::user();
+        $userHelper = new UserHelper($user);
+
+        if (!$userHelper->isPlaying()) {
+            return redirect()->route('newGame');
+        }
+
+        $game = $userHelper->getLatestGame();
+
+        $gameHelper = new GameHelper($game);
+
+        $round = $gameHelper->currentRound();
+        $attempts = $gameHelper->attemptsForCurrentRound();
+
+        $boardHelper = new BoardHelper($game, $round, $attempts);
+
+        $boardHelper->render();
+
+        return view('play-game')
+            ->with([
+                'wordLength' => $gameHelper->getWordLength(),
+                'rows' => $boardHelper->getRows(),
+                'input' => $boardHelper->getInputRow()
+            ]);
 
     }
 
@@ -38,13 +67,13 @@ class GameController extends Controller
         }
 
         // Create a new game
-        $gameHelper = GameHelper::create($user);
+        $gameHelper = GameHelper::create($user, $request->word_length);
 
         // Create new round for game
-        $gameHelper->newRound($request->letters);
+        $gameHelper->newRound();
 
         // Return the play game
-        return redirect()->route('game');
+        return redirect()->route('playGame');
     }
 
 
