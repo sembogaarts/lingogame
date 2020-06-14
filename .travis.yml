@@ -3,7 +3,7 @@ language: php
 dist: trusty
 
 php:
-  - 7.4git
+  - 7.4
 
 install:
   - travis_retry composer install --no-interaction
@@ -17,3 +17,4 @@ before_script:
 
 script:
   - php artisan dusk
+  - php vendor/phpunit/phpunit/phpunit
