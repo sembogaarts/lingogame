@@ -9,7 +9,7 @@ use Tests\DuskTestCase;
 class UserTest extends DuskTestCase
 {
     /**
-     * A Dusk test example.
+     * Tests if the user can change his/her username
      *
      * @return void
      */
@@ -17,9 +17,10 @@ class UserTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
-                ->type('@username', 'Sem')
+                ->assertSee('Je speelt momenteel als gast')
+                ->type('@username', 'Donald')
                 ->click('@save')
-                ->assertSee('Sem');
+                ->assertSee('Je speelt als Donald');
         });
     }
 }
