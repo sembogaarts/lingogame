@@ -13,7 +13,7 @@
             </div>
         @else
             <div class="game active">
-                <h1>Geem actief spel</h1>
+                <h1>Geen actief spel</h1>
                 <a href="/new-game"><button>Nieuw spel</button></a>
             </div>
         @endif
