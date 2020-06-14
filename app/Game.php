@@ -10,4 +10,8 @@ class Game extends Model
         'user_id',
         'word_length'
     ];
+
+    public function rounds() {
+        return $this->hasMany(Round::class, 'game_id', 'id');
+    }
 }

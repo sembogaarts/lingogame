@@ -18,6 +18,12 @@ Route::middleware(['token'])->group(function () {
     // Home for user
     Route::get('/', 'HomeController@index');
 
+    // Route for creating a new game
+    Route::post('/username', 'UserController@saveUsername')->name('saveUsername');
+
+    // Route to see highscores
+    Route::get('/highscores', 'HighscoreController@index');
+
     Route::middleware(['not-playing'])->group(function() {
 
         // Route with form for creating a new game
@@ -40,9 +46,6 @@ Route::middleware(['token'])->group(function () {
         Route::post('/round', 'GameController@round')->name('round');
 
     });
-
-    // Highscore
-    Route::get('/highscore', 'HighscoreController@index');
 
 });
 

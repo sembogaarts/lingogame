@@ -1,11 +1,38 @@
 .main-header {
     width: 100%;
-    padding: 20px;
-    background-color: lighten(#1D76B7, 20);
+    height: 80px;
+    line-height: 80px;
+    background-color: #fff;
 
     img {
         height: 40px;
-        margin: 0 auto;
-        display: block;
+        margin: 0 20px 0 0;
+        display: inline-block;
     }
+
+    a {
+        font-weight: bold;
+        text-decoration: none;
+        margin-right: 20px;
+    }
+
+}
+
+.sub-header {
+    width: 100%;
+    background-color: #1D76B7;
+    color: #fff;
+    padding: 20px 0;
+    margin-bottom: 50px;
+
+    h1 {
+        font-size: 30px;
+        font-weight: 700;
+    }
+
+    p {
+        font-size: 20px;
+
+    }
+
 }

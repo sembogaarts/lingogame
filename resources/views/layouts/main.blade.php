@@ -8,16 +8,12 @@
     <title>Document</title>
     <!-- CSS -->
     <link rel="stylesheet" href="/css/app.css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- VUE Wrapper -->
-<div id="app">
-    @yield('body')
-</div>
-
-<!-- JS -->
-<script src="/js/app.js"></script>
+@yield('body')
 
 </body>
 </html>
