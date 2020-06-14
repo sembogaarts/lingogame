@@ -98,4 +98,25 @@ class GameHelperTest extends TestCase
         $this->assertTrue($score === 2);
     }
 
+    public function testMakeAttempt() {
+
+        $user = factory(User::class)->create();
+
+        $game = factory(Game::class)->create([
+            'user_id' => $user->id,
+            'word_length' => 5
+        ]);
+
+        $round = factory(Round::class)->create([
+            'game_id' => $game->id,
+            'word' => 'hallo'
+        ]);
+
+        $gameHelper = new GameHelper($game);
+
+        $attempt = $gameHelper->makeAttempt('holaa');
+
+        $this->assertTrue(isset($attempt->id));
+    }
+
 }
