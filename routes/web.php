@@ -22,7 +22,7 @@ Route::middleware(['token'])->group(function () {
     Route::post('/username', 'UserController@saveUsername')->name('saveUsername');
 
     // Route to see highscores
-    Route::get('/highscores', 'HighscoreController@index');
+    Route::get('/highscores', ' @index');
 
     Route::middleware(['not-playing'])->group(function() {
 

@@ -5,11 +5,7 @@ namespace App\Helpers;
 use App\Attempt;
 use App\Game;
 use App\Round;
-use App\User;
-use App\Word;
 use Carbon\Carbon;
-use Carbon\Traits\Rounding;
-use Illuminate\Support\Str;
 
 class GameHelper
 {
