@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Attempt;
 use App\Game;
 use App\Helpers\BoardHelper;
 use App\Helpers\GameHelper;
 use App\Helpers\UserHelper;
+use App\Http\Requests\AttemptRequest;
 use App\Http\Requests\NewGameRequest;
 use Firebit\Laravel\ApiResponse\ApiResponseFactory;
 use Illuminate\Http\Request;
@@ -18,40 +20,26 @@ class GameController extends Controller
     {
         $user = Auth::user();
         $userHelper = new UserHelper($user);
-
-        if ($userHelper->isPlaying()) {
-            return redirect()->route('playGame');
-        }
-
         return view('new-game');
-
     }
 
     public function playGame()
     {
         $user = Auth::user();
         $userHelper = new UserHelper($user);
-
-        if (!$userHelper->isPlaying()) {
-            return redirect()->route('newGame');
-        }
-
         $game = $userHelper->getLatestGame();
-
         $gameHelper = new GameHelper($game);
-
         $round = $gameHelper->currentRound();
         $attempts = $gameHelper->attemptsForCurrentRound();
-
         $boardHelper = new BoardHelper($game, $round, $attempts);
-
         $boardHelper->render();
 
         return view('play-game')
             ->with([
                 'wordLength' => $gameHelper->getWordLength(),
                 'rows' => $boardHelper->getRows(),
-                'input' => $boardHelper->getInputRow()
+                'input' => $boardHelper->getInputRow(),
+                'round' => $round
             ]);
 
     }
@@ -62,12 +50,10 @@ class GameController extends Controller
         $user = Auth::user();
         $userHelper = new UserHelper($user);
 
-        if ($userHelper->isPlaying()) {
-            return redirect()->route('game');
-        }
-
         // Create a new game
-        $gameHelper = GameHelper::create($user, $request->word_length);
+        $gameHelper = GameHelper::create($user, $request->length);
+
+
 
         // Create new round for game
         $gameHelper->newRound();
@@ -76,5 +62,48 @@ class GameController extends Controller
         return redirect()->route('playGame');
     }
 
+    public function attempt(AttemptRequest $request) {
+
+        $userHelper = new UserHelper(Auth::user());
+        $gameHelper = new GameHelper($userHelper->getLatestGame());
+
+        if($gameHelper->currentRound()->success) {
+            return redirect()
+                ->route('playGame')
+                ->with('message', 'Je hebt al gewonnen, start een nieuwe ronde.');
+        }
+
+        if(count($gameHelper->attemptsForCurrentRound()) === 5) {
+            return redirect()
+                ->route('playGame')
+                ->with('message', 'Je hebt al 5 keer geraden, start een nieuwe ronde.');
+        }
+
+        $attempt = $gameHelper->makeAttempt($request->word);
+
+        if($gameHelper->checkAttempt($attempt)) {
+            $gameHelper->finishRound(true);
+        } else {
+            if(count($gameHelper->attemptsForCurrentRound()) === 5) {
+                $gameHelper->finishRound(false);
+            }
+        }
+
+        return redirect()->route('playGame');
+
+    }
+
+    public function round() {
+
+        $userHelper = new UserHelper(Auth::user());
+        $gameHelper = new GameHelper($userHelper->getLatestGame());
+
+        if($gameHelper->currentRound()->finished_at) {
+            $gameHelper->newRound();
+        }
+
+        return redirect()->route('playGame');
+
+    }
 
 }

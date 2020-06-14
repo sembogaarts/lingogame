@@ -18,13 +18,28 @@ Route::middleware(['token'])->group(function () {
     // Home for user
     Route::get('/', 'HomeController@index');
 
-    // New game screen
-    Route::get('/new-game', 'GameController@newGame')->name('newGame');
+    Route::middleware(['not-playing'])->group(function() {
 
-    // Play game
-    Route::get('/play', 'GameController@playGame')->name('playGame');
+        // Route with form for creating a new game
+        Route::get('/new-game', 'GameController@newGame')->name('newGame');
 
-    Route::post('/game', 'GameController@create')->name('createGame');
+        // Route for creating a new game
+        Route::post('/new-game', 'GameController@create')->name('createGame');
+
+    });
+
+    Route::middleware(['playing'])->group(function() {
+
+        // Route for the active game
+        Route::get('/play', 'GameController@playGame')->name('playGame');
+
+        // Route to attempt a word for active game
+        Route::post('/attempt', 'GameController@attempt')->name('attempt');
+
+        // Route to attempt a word for active game
+        Route::post('/round', 'GameController@round')->name('round');
+
+    });
 
     // Highscore
     Route::get('/highscore', 'HighscoreController@index');

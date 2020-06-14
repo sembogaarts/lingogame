@@ -8,7 +8,9 @@ class Round extends Model
 {
     protected $fillable = [
         'game_id',
-        'word'
+        'word',
+        'success',
+        'finished_at'
     ];
 
     public function attempts() {

@@ -2,10 +2,12 @@
 
 namespace App\Http\Requests;
 
+use App\Helpers\GameHelper;
+use App\Helpers\UserHelper;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
-class NewGameRequest extends FormRequest
+class AttemptRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +26,14 @@ class NewGameRequest extends FormRequest
      */
     public function rules()
     {
+
+        $user = Auth::user();
+        $userHelper = new UserHelper($user);
+        $game = $userHelper->getLatestGame();
+        $gameHelper = new GameHelper($game);
+
         return [
-            'length' => [
-                'required',
-                Rule::in([5, 6, 7])
-            ]
+            'word' => 'required|size:' . $gameHelper->getWordLength()
         ];
     }
 }

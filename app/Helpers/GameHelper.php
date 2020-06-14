@@ -2,10 +2,12 @@
 
 namespace App\Helpers;
 
+use App\Attempt;
 use App\Game;
 use App\Round;
 use App\User;
 use App\Word;
+use Carbon\Carbon;
 use Carbon\Traits\Rounding;
 use Illuminate\Support\Str;
 
@@ -68,12 +70,24 @@ class GameHelper
 
     }
 
-    public function roundFeedback() {
-
+    public function makeAttempt($word) {
+        $attempt = Attempt::create([
+            'round_id' => $this->currentRound()->id,
+            'word' => strtolower($word)
+        ]);
+        return $attempt;
     }
 
-    public function render() {
+    public function checkAttempt(Attempt $attempt) {
+        return $this->currentRound()->word === $attempt->word;
+    }
 
+    public function finishRound(bool $success) {
+        $round = $this->currentRound();
+        $round->success = $success;
+        $round->finished_at = Carbon::now();
+        $round->save();
+        return $round;
     }
 
 }

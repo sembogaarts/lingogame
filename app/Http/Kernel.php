@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\NotPlayingMiddleware;
+use App\Http\Middleware\PlayingMiddleware;
 use App\Http\Middleware\TokenMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -67,6 +69,8 @@ class Kernel extends HttpKernel
         /**
          * Custom Middleware
          */
-        'token' => TokenMiddleware::class
+        'token' => TokenMiddleware::class,
+        'playing' => PlayingMiddleware::class,
+        'not-playing' => NotPlayingMiddleware::class
     ];
 }

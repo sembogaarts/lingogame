@@ -17,6 +17,8 @@ class CreateRoundsTable extends Migration
             $table->increments('id');
             $table->integer('game_id')->unsigned();
             $table->string('word');
+            $table->boolean('success')->nullable();
+            $table->timestamp('finished_at')->nullable();
             $table->timestamps();
             // Relations
             $table->foreign('game_id')->references('id')->on('games');
