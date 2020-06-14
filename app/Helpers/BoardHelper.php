@@ -17,6 +17,12 @@ class BoardHelper
     private $_input = [];
 
 
+    /**
+     * BoardHelper constructor.
+     * @param $game
+     * @param $round
+     * @param $attempts
+     */
     public function __construct($game, $round, $attempts)
     {
         $this->_game = $game;
@@ -24,6 +30,10 @@ class BoardHelper
         $this->_attempts = $attempts;
     }
 
+    /**
+     * Render the board for the view
+     * @return $this
+     */
     public function render()
     {
         // Foreach attempt render a row
@@ -37,16 +47,28 @@ class BoardHelper
         return $this;
     }
 
+    /**
+     * Returns the rows with the previous attempts
+     * @return array
+     */
     public function getRows()
     {
         return $this->_rows;
     }
 
+    /**
+     * Returns the row with the input for the user
+     * @return array
+     */
     public function getInputRow()
     {
         return $this->_input;
     }
 
+    /**
+     * Fills the input row with al the previous attempts
+     * @return void
+     */
     private function inputRow()
     {
         // Always give the first letter away
@@ -61,6 +83,11 @@ class BoardHelper
         }
     }
 
+    /**
+     * Renders a row for the attempts
+     * @param Attempt $attempt
+     * @return array
+     */
     private function renderAttempt(Attempt $attempt)
     {
         // Put words in arrays
@@ -82,11 +109,23 @@ class BoardHelper
         ];
     }
 
+    /**
+     * Converts a string to an array
+     * @param $str
+     * @return array
+     */
     private function stringToArray($str)
     {
         return str_split($str, 1);
     }
 
+    /**
+     * Removes letters from certain indexes
+     * Used to check what letters are misplaced or already correct
+     * @param $word
+     * @param $feedback
+     * @return mixed
+     */
     private function removeLettersAtIndexes($word, $feedback)
     {
         for ($i = 0; $i < $this->_game->word_length; $i++) {
@@ -97,6 +136,12 @@ class BoardHelper
         return $word;
     }
 
+    /**
+     * Get all positions for the letters that are already valid
+     * @param $correctWord
+     * @param $attemptWord
+     * @return array
+     */
     private function getValidLetterPositions($correctWord, $attemptWord)
     {
         $feedback = [];
@@ -111,6 +156,12 @@ class BoardHelper
         return $feedback;
     }
 
+    /**
+     * @param $correctWord
+     * @param $attemptWord
+     * @param $feedback
+     * @return mixed
+     */
     private function getMisplacedLetterPositions($correctWord, $attemptWord, $feedback)
     {
         $misplaced = [];
@@ -123,6 +174,7 @@ class BoardHelper
                 $positionsInCorrectWord = array_keys($correctWord, $attemptWord[$i]);
                 $letterCountInCorrectWord = count($positionsInCorrectWord);
 
+                // Check howmany letters aare in the wrong position
                 $positionsInWrongPositions = array_keys($misplaced, $attemptWord[$i]);
                 $countInWrongPositions = count($positionsInWrongPositions);
 
