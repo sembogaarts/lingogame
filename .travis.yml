@@ -22,4 +22,4 @@ before_script:
 
 script:
   - php vendor/phpunit/phpunit/phpunit
-  - php artisan dusk
+#  - php artisan dusk
