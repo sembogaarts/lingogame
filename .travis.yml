@@ -9,12 +9,14 @@ addons:
   chrome: stable
 
 install:
+  - mysql -e 'create database lingogame_test;'
   - cp .env.testing .env
   - composer self-update
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
 
 before_script:
   - php artisan key:generate
+  - php artisan migrate --force
   - php artisan dusk:chrome-driver 72
   - php artisan serve &
 
