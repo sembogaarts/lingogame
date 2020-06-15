@@ -1,130 +1,5 @@
 @charset "UTF-8";
 
-.main-header {
-  width: 100%;
-  height: 80px;
-  line-height: 80px;
-  background-color: #fff;
-}
-
-.main-header img {
-  height: 40px;
-  margin: 0 20px 0 0;
-  display: inline-block;
-}
-
-.main-header a {
-  font-weight: bold;
-  text-decoration: none;
-  margin-right: 20px;
-}
-
-.sub-header {
-  width: 100%;
-  background-color: #1D76B7;
-  color: #fff;
-  padding: 20px 0;
-  margin-bottom: 50px;
-}
-
-.sub-header h1 {
-  font-size: 30px;
-  font-weight: 700;
-}
-
-.sub-header p {
-  font-size: 20px;
-}
-
-.lingo-board {
-  padding: 50px 0;
-}
-
-.lingo-row {
-  display: flex;
-  margin: 0 auto;
-  align-content: center;
-  width: 100%;
-  justify-content: center;
-}
-
-.lingo-row .lingo-block {
-  margin: 5px;
-  width: 100px;
-  height: 100px;
-  border-radius: 6px;
-  background-color: #1D76B7;
-  display: inline-block;
-  color: #fff;
-  text-align: center;
-  line-height: 100px;
-  font-size: 50px;
-  font-weight: bold;
-  text-transform: uppercase;
-  padding: 0;
-  position: relative;
-}
-
-.lingo-row .lingo-block p {
-  position: relative;
-  z-index: 10 !important;
-}
-
-.lingo-row .lingo-block.valid {
-  background-color: #D50000;
-}
-
-.lingo-row .lingo-block.misplaced::after {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  bottom: 5px;
-  right: 5px;
-  content: "";
-  border-radius: 200px;
-  background-color: #eabb00;
-  z-index: 0;
-}
-
-.game {
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  background-color: #fff;
-  text-align: center;
-}
-
-.game h1 {
-  font-weight: 700;
-}
-
-.game.active {
-  background-color: #eabb00;
-  color: #fff !important;
-}
-
-input {
-  width: 100%;
-  border: 0;
-  background-color: #ececf1;
-  border-radius: 10px !important;
-  padding: 10px 15px;
-  outline: none;
-  display: block;
-  margin-bottom: 10px !important;
-}
-
-button {
-  margin: 0 auto !important;
-  border-radius: 50px !important;
-  display: block;
-  font-weight: bold;
-  border: 0;
-  background-color: black;
-  color: #fff;
-  padding: 10px 40px;
-}
-
 /*!
  * Bootstrap v4.5.0 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
@@ -11051,5 +10926,152 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+
+.main-header {
+  width: 100%;
+  height: 80px;
+  line-height: 80px;
+  background-color: #fff;
+}
+
+.main-header img {
+  height: 40px;
+  margin: 0 20px 0 0;
+  display: inline-block;
+}
+
+.main-header a {
+  font-weight: bold;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.sub-header {
+  width: 100%;
+  background-color: #1D76B7;
+  color: #fff;
+  padding: 20px 0;
+  margin-bottom: 50px;
+}
+
+.sub-header h1 {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.sub-header p {
+  font-size: 20px;
+}
+
+.lingo-board {
+  padding: 50px 0;
+}
+
+.lingo-row {
+  display: flex;
+  margin: 0 auto;
+  align-content: center;
+  width: 100%;
+  justify-content: center;
+}
+
+.lingo-row .lingo-block {
+  margin: 5px;
+  width: 100px;
+  height: 100px;
+  border-radius: 6px;
+  background-color: #1D76B7;
+  display: inline-block;
+  color: #fff;
+  text-align: center;
+  line-height: 100px;
+  font-size: 50px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 0;
+  position: relative;
+}
+
+.lingo-row .lingo-block p {
+  position: relative;
+  z-index: 10 !important;
+}
+
+.lingo-row .lingo-block.valid {
+  background-color: #D50000;
+}
+
+.lingo-row .lingo-block.misplaced::after {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  bottom: 5px;
+  right: 5px;
+  content: "";
+  border-radius: 200px;
+  background-color: #eabb00;
+  z-index: 0;
+}
+
+.game {
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  text-align: center;
+}
+
+.game h1 {
+  font-weight: 700;
+}
+
+.game.active {
+  background-color: #eabb00;
+  color: #fff !important;
+}
+
+input[type=text] {
+  width: 100%;
+  border: 0;
+  background-color: #ececf1;
+  border-radius: 10px !important;
+  padding: 10px 15px;
+  outline: none;
+  display: block;
+  margin-bottom: 10px !important;
+}
+
+button {
+  margin: 0 auto !important;
+  border-radius: 50px !important;
+  display: block;
+  font-weight: bold;
+  border: 0;
+  background-color: black;
+  color: #fff;
+  padding: 10px 40px;
+}
+
+label {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+h1 {
+  font-weight: 700 !important;
+}
+
+ol {
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+
+ol li {
+  background-color: #eee;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 

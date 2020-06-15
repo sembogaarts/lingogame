@@ -9,10 +9,29 @@
 
         <form action="{{ route('createGame') }}" method="POST">
             @csrf
-            <label for="">Welk niveau wil je spelen?</label>
-            <input type="radio" name="length" value="5">
-            <input type="radio" name="length" value="6">
-            <input type="radio" name="length" value="7">
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Welk niveau wil je spelen?</label>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="length" id="easy" value="5" checked>
+                    <label class="form-check-label" for="easy">
+                        5 letters
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="length" id="medium" value="6">
+                    <label class="form-check-label" for="medium">
+                        6 letters
+                    </label>
+                </div>
+                <div class="form-check disabled">
+                    <input class="form-check-input" type="radio" name="length" id="hard" value="7">
+                    <label class="form-check-label" for="hard">
+                        7 letters
+                    </label>
+                </div>
+            </div>
             <button type="submit">Spelen</button>
         </form>
 

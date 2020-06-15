@@ -27,7 +27,8 @@ class HighscoreHelper
     private static function getGames($amount, $word_length)
     {
         return Game::where([
-            'word_length' => $word_length
+            ['word_length', $word_length],
+            ['score', '!=', null]
         ])->orderBy('score', 'desc')
             ->get()
             ->take($amount);

@@ -1,11 +1,12 @@
 // Variables
 @import 'variables';
 
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
 // Partials
 @import "partials/header";
 @import "partials/lingo-board";
 @import "partials/game";
 @import "partials/inputs";
-
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "partials/layout";
