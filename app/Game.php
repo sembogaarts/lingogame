@@ -11,6 +11,10 @@ class Game extends Model
         'word_length'
     ];
 
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
     public function rounds() {
         return $this->hasMany(Round::class, 'game_id', 'id');
     }
