@@ -35,8 +35,8 @@
             <div>
                 <form action="{{ route('attempt') }}" method="POST">
                     @csrf
-                    <input type="text" name="word">
-                    <button type="submit">Raden</button>
+                    <input dusk="word" type="text" name="word">
+                    <button dusk="attempt" type="submit">Raden</button>
                 </form>
             </div>
         @else

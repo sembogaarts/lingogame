@@ -23,4 +23,30 @@ class UserTest extends DuskTestCase
                 ->assertSee('Je speelt als Donald');
         });
     }
+
+    /**
+     * Tests if the user can change his/her username
+     *
+     * @return void
+     */
+    public function testUserCanStartGame()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/')
+                ->click('@newGame')
+                ->click('@startGame')
+                ->type('@word', 'holaa')
+                ->click('@attempt')
+                ->type('@word', 'holaa')
+                ->click('@attempt')
+                ->type('@word', 'holaa')
+                ->click('@attempt')
+                ->type('@word', 'holaa')
+                ->click('@attempt')
+                ->type('@word', 'holaa')
+                ->click('@attempt')
+                ->assertSee('Welk niveau wil je spelen?');
+        });
+    }
+
 }

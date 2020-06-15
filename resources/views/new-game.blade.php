@@ -32,7 +32,7 @@
                     </label>
                 </div>
             </div>
-            <button type="submit">Spelen</button>
+            <button dusk="startGame" type="submit">Spelen</button>
         </form>
 
     </div>
