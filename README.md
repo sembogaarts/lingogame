@@ -1,5 +1,5 @@
 # Lingo [![Build Status](https://travis-ci.org/sembogaarts/lingogame.svg?branch=master)](https://travis-ci.org/sembogaarts/lingogame)
-Ontwikkeld voor VKBEP dit is deelopdracht 2, het daadwerkelijke Lingo spel. Deze repo staat live op [sembogaarts.nl](lingo.sembogaarts.nl).
+Ontwikkeld voor VKBEP dit is deelopdracht 2, het daadwerkelijke Lingo spel. Deze repo staat live op [sembogaarts.nl](http://lingo.sembogaarts.nl).
 
 ## Installatie
 Vereist is composer en PHP 7.3 of hoger. Installeer eerst alle composer dependencies.
