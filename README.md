@@ -37,6 +37,11 @@ php artisan dusk
 php vendor/phpunit/phpunit/phpunit
 ```
 
+## Static analysis tools
+Op de achtergrond van het systeem draait [Sentry](https://sentry.io/). Op het moment dat er een Exception opduikt die niet is afgehandeld wordt dit gerapporteerd en kan hier direct mee aan de slag worden gegaan.
+
+Alle persoonlijke informatie wordt uit het verzoek gehaald en wordt ook niet opgeslagen, zo is het platform ook nog is enorm veilig. Op de productie omgeving is dit ingeregeld, dit kan eenvoudig worden getest door een eigen account te registereren en de sleutel hiervoor te plakken bij `SENTRY_LARAVEL_DSN` in het  .env bestand.
+
 ## Security Audits
 Omdat het om een prototype gaat is er gebruik gemaakt van tokens die gegenereert worden en als cookie worden toegevoegd. Dit zou geen veilige manier zijn op het moment dat dit in productie gaat. Mensen kunnen namelijk token stelen om zo voor te doen als iemand anders. Omdat er geen persoonlijke informatie wordt opgeslagen maakt het inprincipe voor nu niets uit.
 
